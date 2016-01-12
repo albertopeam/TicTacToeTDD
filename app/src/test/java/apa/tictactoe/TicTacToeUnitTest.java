@@ -61,4 +61,98 @@ public class TicTacToeUnitTest {
         ticTacToe.play(1,2);
         assertThat(TicTacToe.X, equalTo(ticTacToe.getTurn()));
     }
+
+
+    @Test
+    public void testWhenNoWinner()  throws OutSideBoardException, PlaceOccupiedException{
+        Character winner = ticTacToe.play(1, 1);
+        assertThat(TicTacToe.NO_WINNER, equalTo(winner));
+    }
+
+
+    @Test
+    public void testWhenHorizontalAreXThenWinX()  throws OutSideBoardException, PlaceOccupiedException{
+        ticTacToe.play(1,1);
+        ticTacToe.play(2,1);
+        ticTacToe.play(1,2);
+        ticTacToe.play(2,2);
+        Character winner = ticTacToe.play(1,3);
+        assertThat(TicTacToe.X, equalTo(winner));
+    }
+
+
+    @Test
+    public void testWhenVerticalAreXThenWinX()  throws OutSideBoardException, PlaceOccupiedException{
+        ticTacToe.play(1,1);
+        ticTacToe.play(1,2);
+        ticTacToe.play(2,1);
+        ticTacToe.play(1,3);
+        Character winner = ticTacToe.play(3,1);
+        assertThat(TicTacToe.X, equalTo(winner));
+    }
+
+
+    @Test
+    public void testWhenDiagonalAreXThenWinX()  throws OutSideBoardException, PlaceOccupiedException{
+        ticTacToe.play(1,1);
+        ticTacToe.play(1,2);
+        ticTacToe.play(2,2);
+        ticTacToe.play(1,3);
+        Character winner = ticTacToe.play(3,3);
+        assertThat(TicTacToe.X, equalTo(winner));
+    }
+
+
+    @Test
+    public void testWhenSecondaryDiagonalAreOThenWinO()  throws OutSideBoardException, PlaceOccupiedException{
+        ticTacToe.play(1,1);    //x
+        ticTacToe.play(1,3);    //o
+        ticTacToe.play(3,3);    //x
+        ticTacToe.play(2,2);    //o
+        ticTacToe.play(2,3);    //x
+        Character winner = ticTacToe.play(3,1);//o
+        assertThat(TicTacToe.O, equalTo(winner));
+    }
+
+
+    @Test
+    public void testWhenDraw()  throws OutSideBoardException, PlaceOccupiedException{
+        ticTacToe.play(1,2);    //x
+        ticTacToe.play(1,1);    //o
+        ticTacToe.play(2,1);    //x
+        ticTacToe.play(1,3);    //o
+        ticTacToe.play(2,3);    //x
+        ticTacToe.play(2,2);    //0
+        ticTacToe.play(3,1);    //x
+        ticTacToe.play(3, 2);    //0
+        Character draw = ticTacToe.play(3,3);    //x
+        assertThat(TicTacToe.DRAW, equalTo(draw));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
